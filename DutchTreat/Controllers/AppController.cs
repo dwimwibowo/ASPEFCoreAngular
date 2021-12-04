@@ -15,6 +15,7 @@ namespace DutchTreat.Controllers
             return View();
         }
 
+        [HttpGet("contact")]
         public IActionResult Contact()
         {
             ViewBag.Title = "Contact Us";
@@ -22,6 +23,7 @@ namespace DutchTreat.Controllers
             return View();
         }
 
+        [HttpGet("about")]
         public IActionResult About()
         {
             ViewBag.Title = "About Us";
@@ -29,6 +31,7 @@ namespace DutchTreat.Controllers
             return View();
         }
 
+        [HttpGet("shop")]
         public IActionResult Shop()
         {
             ViewBag.Title = "Shop";
