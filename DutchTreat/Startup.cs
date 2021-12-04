@@ -35,7 +35,7 @@ namespace DutchTreat
                 cfg.MapRoute(
                     "Fallback",
                     "{controller}/{action}/{id?}",
-                    new { controller = "App", Action = "Index" }
+                    new { controller = "app", Action = "index" }
                 );
             });
         }

@@ -25,7 +25,7 @@
         console.log("You click on " + $(this).text());
     });
 
-    var $loginToggle = $("#login-toggle");
+    var $loginToggle = $("#loginToggle");
     var $popupForm = $(".popup-form");
     $loginToggle.on("click", function () {
         //$popupForm.toggle(['slow']);
