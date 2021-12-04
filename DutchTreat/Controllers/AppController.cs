@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DutchTreat.Controllers
@@ -18,26 +19,24 @@ namespace DutchTreat.Controllers
         [HttpGet("contact")]
         public IActionResult Contact()
         {
-            ViewBag.Title = "Contact Us";
+            return View();
+        }
 
-            throw new InvalidOperationException("Bad things happen");
-
+        [HttpPost("contact")]
+        public IActionResult Contact(ContactViewModel model)
+        {
             return View();
         }
 
         [HttpGet("about")]
         public IActionResult About()
         {
-            ViewBag.Title = "About Us";
-
             return View();
         }
 
         [HttpGet("shop")]
         public IActionResult Shop()
         {
-            ViewBag.Title = "Shop";
-
             return View();
         }
     }

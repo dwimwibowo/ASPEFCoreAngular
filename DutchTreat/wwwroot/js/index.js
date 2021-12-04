@@ -2,9 +2,9 @@
     console.log("Hello Pluralsight");
 
     //var theForm = document.getElementById("the-form");
-    var theForm = $("#theForm");
+    //var theForm = $("#theForm");
     //theForm.hidden = true;
-    theForm.hide();
+    //theForm.hide();
 
     //var button = document.getElementById("buy-button");
     var button = $("#buyButton");
