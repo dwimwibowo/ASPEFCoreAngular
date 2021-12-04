@@ -20,6 +20,8 @@ namespace DutchTreat.Controllers
         {
             ViewBag.Title = "Contact Us";
 
+            throw new InvalidOperationException("Bad things happen");
+
             return View();
         }
 

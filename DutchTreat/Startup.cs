@@ -25,6 +25,10 @@ namespace DutchTreat
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
 
             //app.UseDefaultFiles();
             app.UseStaticFiles();
