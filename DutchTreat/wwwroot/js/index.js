@@ -1,13 +1,35 @@
-﻿var x = 0;
-var s = "";
+﻿$(document).ready(function() {
+    console.log("Hello Pluralsight");
 
-console.log("Hello Pluralsight");
+    //var theForm = document.getElementById("the-form");
+    var theForm = $("#theForm");
+    //theForm.hidden = true;
+    theForm.hide();
 
-var theForm = document.getElementById("theForm");
-theForm.hidden = true;
+    //var button = document.getElementById("buy-button");
+    var button = $("#buyButton");
 
-var button = document.getElementById("buyButton");
-button.addEventListener("click", function () {
-    //alert("Buying item");
-    console.log("Buying item");
+    //button.addEventListener("click", () => {
+    //    alert("Buying Item");
+    //})
+    button.on("click", function () {
+        console.log("Buying item");
+        alert("Buying Item");
+    });
+
+    //var productInfo = document.getElementsByClassName("product-props");
+    var productInfo = $(".product-props li");
+
+    //var listItems = productInfo[0].children;
+    productInfo.on("click", function () {
+        console.log("You click on " + $(this).text());
+    });
+
+    var $loginToggle = $("#login-toggle");
+    var $popupForm = $(".popup-form");
+    $loginToggle.on("click", function () {
+        //$popupForm.toggle(['slow']);
+        $popupForm.toggle(1000);
+    });
 });
+
