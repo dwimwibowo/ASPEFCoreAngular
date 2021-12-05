@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 using DutchTreat.Services;
+using DutchTreat.Data;
 
 namespace DutchTreat
 {
@@ -20,6 +21,8 @@ namespace DutchTreat
         {
             // Activate Service
             services.AddTransient<IMailService, NullMailService>();
+
+            services.AddDbContext<DutchContext>();
 
             services.AddMvc();
         }
