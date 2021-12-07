@@ -29,14 +29,15 @@ namespace DutchTreat
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Activate Service
-            services.AddTransient<IMailService, NullMailService>();
-
             // Database
             services.AddDbContext<DutchContext>(cfg =>
             {
                 cfg.UseSqlServer(_config.GetConnectionString("DutchConnectionString"));
             });
+
+            // Activate Service
+            services.AddTransient<DutchSeeder>();
+            services.AddTransient<IMailService, NullMailService>();
 
             services.AddMvc();
         }
