@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using DutchTreat.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace DutchTreat.Data
@@ -43,6 +44,45 @@ namespace DutchTreat.Data
                     .Where(p => p.Category == category)
                     .OrderBy(p => p.Title)
                     .ToList();
+        }
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            try
+            {
+                _logger.LogInformation("GetAllOrders was called");
+
+                return _ctx.Orders
+                        .Include(o => o.Items)
+                        .ThenInclude(p => p.Product)
+                        .OrderByDescending(o => o.OrderDate)
+                        .ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation($"Failed to get all orders: {ex}");
+                return null;
+            }
+        }
+
+        public Order GetOrderById(int id)
+        {
+            try
+            {
+                _logger.LogInformation("GetAllOrders was called");
+
+                return _ctx.Orders
+                        .Include(o => o.Items)
+                        .ThenInclude(p => p.Product)
+                        .Where(o => o.Id == id)
+                        .OrderByDescending(o => o.OrderDate)
+                        .FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation($"Failed to get order by id: {ex}");
+                return null;
+            }
         }
 
         public bool SaveAll()
