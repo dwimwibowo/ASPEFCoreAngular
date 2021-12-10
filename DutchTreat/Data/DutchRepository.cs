@@ -69,7 +69,7 @@ namespace DutchTreat.Data
         {
             try
             {
-                _logger.LogInformation("GetAllOrders was called");
+                _logger.LogInformation("GetOrderById was called");
 
                 return _ctx.Orders
                         .Include(o => o.Items)
