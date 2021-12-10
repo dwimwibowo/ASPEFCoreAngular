@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using AutoMapper;
 
 using DutchTreat.Services;
 using DutchTreat.Data;
@@ -40,6 +42,8 @@ namespace DutchTreat
             // Activate Service
             services.AddTransient<DutchSeeder>();
             services.AddTransient<IMailService, NullMailService>();
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IDutchRepository, DutchRepository>();
 
