@@ -46,17 +46,26 @@ namespace DutchTreat.Data
                     .ToList();
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
             try
             {
                 _logger.LogInformation("GetAllOrders was called");
 
-                return _ctx.Orders
+                if (includeItems)
+                {
+                    return _ctx.Orders
                         .Include(o => o.Items)
                         .ThenInclude(p => p.Product)
                         .OrderByDescending(o => o.OrderDate)
                         .ToList();
+                }
+                else
+                {
+                    return _ctx.Orders
+                        .OrderByDescending(o => o.OrderDate)
+                        .ToList();
+                }
             }
             catch (Exception ex)
             {
