@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using DutchTreat.Services;
 using DutchTreat.ViewModels;
@@ -63,6 +64,7 @@ namespace DutchTreat.Controllers
         }
 
         [HttpGet("shop")]
+        [Authorize]
         public IActionResult Shop()
         {
             //var results = _context.Products

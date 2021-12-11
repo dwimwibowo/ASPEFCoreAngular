@@ -14,6 +14,7 @@ namespace DutchTreat.Data.Entities
         public string Category { get; set; }
         [Column(TypeName = "VARCHAR(MAX)")]
         public string Size { get; set; }
+        [Column(TypeName = "NUMERIC(18,4)")]
         public decimal Price { get; set; }
         [Column(TypeName = "VARCHAR(MAX)")]
         public string Title { get; set; }

@@ -9,6 +9,7 @@ using System.IO;
 using Newtonsoft.Json;
 
 using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace DutchTreat.Data
 {
@@ -16,17 +17,45 @@ namespace DutchTreat.Data
     {
         private readonly DutchContext _ctx;
         private readonly IHostingEnvironment _hosting;
+        private readonly UserManager<StoreUser> _userManager;
 
-        public DutchSeeder(DutchContext ctx, IHostingEnvironment hosting)
+        public DutchSeeder(
+            DutchContext ctx,
+            IHostingEnvironment hosting,
+            UserManager<StoreUser> userManager)
         {
             this._ctx = ctx;
             this._hosting = hosting;
+            this._userManager = userManager;
         }
 
-        public void Seed()
+        public async Task SeedAsync()
         {
+            // Checking Database
             _ctx.Database.EnsureCreated();
 
+            // Checking user exists
+            StoreUser user = await _userManager.FindByEmailAsync("dwimwibowo@gmail.com");
+
+            if(user == null)
+            {
+                user = new StoreUser
+                {
+                    FirstName = "Dwi",
+                    LastName = "Wibowo",
+                    Email = "dwimwibowo@gmail.com",
+                    UserName = "dwimwibowo@gmail.com"
+                };
+
+                var result = await _userManager.CreateAsync(user, "dutchtreat");
+
+                if(result != IdentityResult.Success)
+                {
+                    throw new InvalidOperationException("Could not create new user in seeder");
+                }
+            }
+
+            // Checking data exists
             if (!_ctx.Products.Any())
             {
                 // Need to create sample data
@@ -40,6 +69,7 @@ namespace DutchTreat.Data
 
                 if(order != null)
                 {
+                    order.User = user;
                     order.Items = new List<OrderItem>()
                     {
                         new OrderItem()

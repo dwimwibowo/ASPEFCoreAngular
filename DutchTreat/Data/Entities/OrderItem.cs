@@ -8,6 +8,7 @@ namespace DutchTreat.Data.Entities
         public Product Product { get; set; }
         public Order Order { get; set; }
         public int Quantity { get; set; }
+        [Column(TypeName = "NUMERIC(18,4)")]
         public decimal UnitPrice { get; set; }
     }
 }
