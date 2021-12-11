@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<StoreUser> userManager
+@inject StoreUser  storeUser
+
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        storeUser = userManager.Users.Single(u => u.UserName == User.Identity.Name);
+
+        ViewBag.FirstName = storeUser.FirstName + " " + storeUser.LastName;
+    }
+}
+
+<!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -161,15 +175,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="~/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="~/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="mailto:@(User.Identity.Name)" class="d-block">@ViewBag.FirstName</a>
+                        </div>
                     </div>
-                    <div class="info">
-                        <a href="mailto:dwimwibowo@gmail.com" class="d-block">Dwi Marstya Wibowo</a>
-                    </div>
-                </div>
+                }
 
                 <!-- Sidebar Search Form -->
                 <div class="form-inline">
@@ -188,13 +205,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-sign-in-alt"></i>
-                                <p>
-                                    Login
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                                    <p>Logout</p>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">
+                                    <i class="nav-icon fas fa-sign-in-alt"></i>
+                                    <p>Login</p>
+                                </a>
+                            }
                         </li>
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link">
