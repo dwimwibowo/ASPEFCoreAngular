@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 
@@ -14,7 +16,9 @@ using DutchTreat.ViewModels;
 
 namespace DutchTreat.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[Controller]")]
+    [ApiController]
     public class OrdersController : Controller
     {
         private readonly IDutchRepository _repository;

@@ -7,5 +7,10 @@
       "Default": "Information",
       "Microsoft": "Warning"
     }
+  },
+  "Tokens": {
+    "Key": "Dutch Treat Token Key",
+    "Issuer": "localhost",
+    "Audience": "Dutch Treat"
   }
 }
