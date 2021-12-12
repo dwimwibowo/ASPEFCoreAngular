@@ -74,7 +74,37 @@ namespace DutchTreat.Data
             }
         }
 
-        public Order GetOrderById(int id)
+        public IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems)
+        {
+            try
+            {
+                _logger.LogInformation("GetAllOrders was called");
+
+                if (includeItems)
+                {
+                    return _ctx.Orders
+                        .Include(o => o.Items)
+                        .ThenInclude(p => p.Product)
+                        .Where(u => u.User.UserName == username)
+                        .OrderByDescending(o => o.OrderDate)
+                        .ToList();
+                }
+                else
+                {
+                    return _ctx.Orders
+                        .Where(u => u.User.UserName == username)
+                        .OrderByDescending(o => o.OrderDate)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation($"Failed to get all orders: {ex}");
+                return null;
+            }
+        }
+
+        public Order GetOrderById(string username, int id)
         {
             try
             {
@@ -83,7 +113,7 @@ namespace DutchTreat.Data
                 return _ctx.Orders
                         .Include(o => o.Items)
                         .ThenInclude(p => p.Product)
-                        .Where(o => o.Id == id)
+                        .Where(o => o.Id == id && o.User.UserName == username)
                         .OrderByDescending(o => o.OrderDate)
                         .FirstOrDefault();
             }
