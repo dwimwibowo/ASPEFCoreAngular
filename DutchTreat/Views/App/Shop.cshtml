@@ -1,34 +1,14 @@
 ﻿@model IEnumerable<Product>
 
 @section Scripts { 
-    <script src="~/clientapp/runtime.js"></script>
-    <script src="~/clientapp/polyfills.js"></script>
-    <script src="~/clientapp/vendor.js"></script>
-    <script src="~/clientapp/main.js"></script>
+    <script src="~/clientapp/dist/runtime.js"></script>
+    <script src="~/clientapp/dist/polyfills.js"></script>
+    <script src="~/clientapp/dist/vendor.js"></script>
+    <script src="~/clientapp/dist/main.js"></script>
 }
 
 @{
     ViewBag.Title = "Shop";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card card-gray">
-            <div class="card-header">
-                <h3 class="card-title">List of products</h3>
-            </div>
-
-            <div class="card-body">
-                <the-shop></the-shop>
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-
-            </div>
-            <!-- /.card-footer -->
-        </div>
-        <!-- /.card -->
-    </div>
-    <!-- /.col-md-6 -->
-</div>
-<!-- /.row -->
+<the-shop></the-shop>

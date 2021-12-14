@@ -33,14 +33,14 @@
           "strict": true
         }
       },
-      "root": "",
+      "root": "ClientApp",
       "sourceRoot": "ClientApp",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "wwwroot/clientapp",
+            "outputPath": "wwwroot/clientapp/dist",
             "index": "ClientApp/index.html",
             "main": "ClientApp/main.ts",
             "polyfills": "ClientApp/polyfills.ts",
@@ -110,8 +110,8 @@
           "options": {
             "main": "ClientApp/test.ts",
             "polyfills": "ClientApp/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "tsConfig": "ClientApp/tsconfig.spec.json",
+            "karmaConfig": "ClientApp/karma.conf.js",
             "assets": [
               "ClientApp/favicon.ico",
               "ClientApp/assets"

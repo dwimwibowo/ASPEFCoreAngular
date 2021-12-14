@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="dutch-app\**" />
+    <Content Remove="dutch-app\**" />
+    <EmbeddedResource Remove="dutch-app\**" />
+    <None Remove="dutch-app\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\ts\StoreCustomer.ts" />
   </ItemGroup>
 

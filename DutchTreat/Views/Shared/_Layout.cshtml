@@ -155,11 +155,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a asp-controller="Account" asp-action="Logout" class="nav-link" role="button"><i class="fas fa-sign-out-alt"></i></a>
+                        <a asp-controller="Account" asp-action="Logout" class="nav-link" role="button" alt="Logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
                     }
                     else
                     {
-                        <a asp-controller="Account" asp-action="Login" class="nav-link" role="button"><i class="fas fa-sign-in-alt"></i></a>
+                        <a asp-controller="Account" asp-action="Login" class="nav-link" role="button" alt="Login" title="Login"><i class="fas fa-sign-in-alt"></i></a>
                     }
                 </li>
                 <li class="nav-item">
