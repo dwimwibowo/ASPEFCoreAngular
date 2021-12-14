@@ -2,7 +2,7 @@
 
 class StoreCustomer {
     public visits: number = 0;
-    private ourName: string;
+    private ourName: string = "";
 
     constructor(private firstName: string, private lastName: string) {
 

@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Product>
 
 @section Scripts { 
-    <script src="~/ts/StoreCustomer.js"></script>
-    <script src="~/ts/main.js"></script>
+    <script src="~/clientapp/runtime.js"></script>
+    <script src="~/clientapp/polyfills.js"></script>
+    <script src="~/clientapp/vendor.js"></script>
+    <script src="~/clientapp/main.js"></script>
 }
 
 @{
@@ -17,33 +19,7 @@
             </div>
 
             <div class="card-body">
-                <p>Count: @Model.Count()</p>
-                <div class="container-fluid">
-                    <div class="row">
-
-                        @foreach (var p in Model)
-                        {
-                            <div class="col">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="~/img/@(p.ArtId).jpg" class="card-img-top" alt="@p.Title">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-bold">@p.Category - @p.Size</h5>
-                                        <p class="card-text">
-                                            <ul class="product-props list-unstyled">
-                                                <li><strong>Price:</strong> $@p.Price</li>
-                                                <li><strong>Artist:</strong> @p.Artist</li>
-                                                <li><strong>Title:</strong> @p.Title</li>
-                                                <li><strong>Description:</strong> @p.ArtDescription</li>
-                                            </ul>
-                                        </p>
-                                        <button id="buyButton" class="btn btn-success">Buy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                    </div>
-                </div>
+                <the-shop></the-shop>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
