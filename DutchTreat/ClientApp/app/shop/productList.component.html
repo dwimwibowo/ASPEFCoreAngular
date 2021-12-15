@@ -1,23 +1,37 @@
-﻿<div class="container-fluid">
-    <div class="row">
+﻿<div class="card card-gray">
+    <div class="card-header">
+        <h3 class="card-title">{{ title }}</h3>
+    </div>
 
-        <div class="col" *ngFor="let p of products">
-            <div class="card" style="width: 18rem;">
-                <img src="img/{{ p.artId }}.jpg" class="card-img-top" [alt]="p.title">
-                <div class="card-body">
-                    <h5 class="card-title text-bold">{{ p.category }} - {{ p.size }}</h5>
-                    <div class="card-text">
-                        <ul class="product-props list-unstyled">
-                            <li><strong>Price:</strong> {{ p.price | currency:"USD":true }}</li>
-                            <li><strong>Artist:</strong> {{ p.artist }}</li>
-                            <li><strong>Title:</strong> {{ p.title }}</li>
-                            <li><strong>Description:</strong> {{ p.artDescription }}</li>
-                        </ul>
+    <div class="card-body">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col" *ngFor="let p of products">
+                    <div class="card" style="width: 18rem;">
+                        <img src="img/{{ p.artId }}.jpg" class="card-img-top" [alt]="p.title">
+                        <div class="card-body">
+                            <h5 class="card-title text-bold">{{ p.category }} - {{ p.size }}</h5>
+                            <div class="card-text">
+                                <ul class="product-props list-unstyled">
+                                    <li><strong>Price:</strong> {{ p.price | currency:"USD":true }}</li>
+                                    <li><strong>Artist:</strong> {{ p.artist }}</li>
+                                    <li><strong>Title:</strong> {{ p.title }}</li>
+                                    <li><strong>Description:</strong> {{ p.artDescription }}</li>
+                                </ul>
+                            </div>
+                            <button id="buyButton" class="btn btn-success float-right" (click)="addProduct(p)">Buy</button>
+                        </div>
                     </div>
-                    <button id="buyButton" class="btn btn-success float-right">Buy</button>
                 </div>
+
             </div>
         </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
 
     </div>
+    <!-- /.card-footer -->
 </div>
+<!-- /.card -->

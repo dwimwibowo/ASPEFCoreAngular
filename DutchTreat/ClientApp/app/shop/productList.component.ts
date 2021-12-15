@@ -11,6 +11,7 @@ import { Product } from "../shared/product"
 
 export class ProductList implements OnInit {
 
+    public title: string = 'Product List';
     public products: Product[] = [];
 
     constructor(private data: DataService) {
@@ -24,5 +25,9 @@ export class ProductList implements OnInit {
                     this.products = this.data.products;
                 }
             });
+    }
+
+    public addProduct(product: Product) {
+        this.data.addToOrder(product);
     }
 }

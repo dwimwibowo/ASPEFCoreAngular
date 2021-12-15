@@ -193,9 +193,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="image">
                             <img src="~/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
                         </div>
-                        <div class="info">
-                            <a href="mailto:@(User.Identity.Name)" class="d-block">@ViewBag.FirstName</a>
-                            <a asp-controller="Account" asp-action="Logout" class="d-block"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <div class="info w-100">
+                            <a href="mailto:@(User.Identity.Name)">@ViewBag.FirstName</a>
+                            <a asp-controller="Account" asp-action="Logout" class="float-right" alt="Logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
                         </div>
                     }
                     else
@@ -203,9 +203,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="image">
                             <img src="~/img/avatar.png" class="img-circle elevation-2" alt="User Image">
                         </div>
-                        <div class="info">
-                            <a href="javascript:;" class="d-block">Guest</a>
-                            <a asp-controller="Account" asp-action="Login" class="d-block"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <div class="info w-100">
+                            <a asp-controller="Account" asp-action="Login" alt="Guest" title="Guest">Guest</a>
+                            <a asp-controller="Account" asp-action="Login" class="float-right" alt="Login" title="Login"><i class="fas fa-sign-in-alt"></i></a>
                         </div>
                     }
                 </div>
