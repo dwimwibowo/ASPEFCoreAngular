@@ -1,5 +1,7 @@
 ﻿import { Component, OnInit } from "@angular/core";
+
 import { DataService } from "../shared/dataService";
+import { Product } from "../shared/product"
 
 @Component({
     selector: "product-list",
@@ -9,7 +11,7 @@ import { DataService } from "../shared/dataService";
 
 export class ProductList implements OnInit {
 
-    public products: DataService["products"] = [];
+    public products: Product[] = [];
 
     constructor(private data: DataService) {
 
