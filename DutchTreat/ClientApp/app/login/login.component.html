@@ -7,6 +7,8 @@
 
             <form (submit)="onLogin()" #theForm="ngForm" novalidate>
                 <div class="card-body">
+                    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+                    
                     <div class="form-group">
                         <label for="username" class="label-control">Username</label>
                         <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" [(ngModel)]="creds.username" #username="ngModel" required />
