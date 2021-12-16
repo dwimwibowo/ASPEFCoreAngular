@@ -27,7 +27,7 @@
     <div class="card-footer">
         <div>
             <strong># / Items:</strong> {{ data.order.items.length }}
-            <a routerLink="checkout" class="btn btn-success float-right" *ngIf="data.order.items.length > 0">Checkout</a>
+            <button routerLink="checkout" class="btn btn-success float-right" *ngIf="data.order.items.length > 0" (click)="onCheckout()">Checkout</button>
         </div>
         <div><strong>Sub Total:</strong> {{ data.order.subTotal | currency:"USD":true }}</div>
         

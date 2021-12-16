@@ -11,6 +11,9 @@ import { Order, OrderItem } from "./order";
 @Injectable()
 export class DataService {
 
+    private token: string = "";
+    private tokenExpiration!: Date;
+
     public products: Product[] = [];
 
     public order: Order = new Order();
@@ -29,6 +32,10 @@ export class DataService {
                     }
                 )
             );
+    }
+
+    public get loginRequired(): Boolean {
+        return this.token.length == 0 || this.tokenExpiration > new Date();
     }
 
     public addToOrder(newProduct: Product) {
