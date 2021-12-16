@@ -1,13 +1,19 @@
 import { __decorate } from "tslib";
 import { Component } from "@angular/core";
 let Checkout = class Checkout {
-    constructor(data) {
+    constructor(data, router) {
         this.data = data;
+        this.router = router;
         this.title = 'Confirm Order';
+        this.errorMessage = "";
     }
     onCheckout() {
-        // TODO
-        alert("Doing checkout");
+        this.data.checkout()
+            .subscribe(success => {
+            if (success) {
+                this.router.navigate(["/"]);
+            }
+        }, err => this.errorMessage = "Failed to save order!");
     }
 };
 Checkout = __decorate([

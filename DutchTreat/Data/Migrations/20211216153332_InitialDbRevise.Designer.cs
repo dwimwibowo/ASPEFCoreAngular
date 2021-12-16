@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DutchTreat.Migrations
 {
     [DbContext(typeof(DutchContext))]
-    [Migration("20211211042715_IdentityUser")]
-    partial class IdentityUser
+    [Migration("20211216153332_InitialDbRevise")]
+    partial class InitialDbRevise
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace DutchTreat.Migrations
                     b.Property<DateTime>("OrderDate");
 
                     b.Property<string>("OrderNumber")
-                        .HasColumnType("VARCHAR(5)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("UserId");
 
@@ -44,7 +44,7 @@ namespace DutchTreat.Migrations
                         new
                         {
                             Id = 1,
-                            OrderDate = new DateTime(2021, 12, 11, 4, 27, 15, 197, DateTimeKind.Utc).AddTicks(7427),
+                            OrderDate = new DateTime(2021, 12, 16, 15, 33, 32, 488, DateTimeKind.Utc).AddTicks(1610),
                             OrderNumber = "12345"
                         });
                 });
@@ -61,7 +61,8 @@ namespace DutchTreat.Migrations
 
                     b.Property<int>("Quantity");
 
-                    b.Property<decimal>("UnitPrice");
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("NUMERIC(18,4)");
 
                     b.HasKey("Id");
 
@@ -100,7 +101,8 @@ namespace DutchTreat.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("VARCHAR(MAX)");
 
-                    b.Property<decimal>("Price");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("NUMERIC(18,4)");
 
                     b.Property<string>("Size")
                         .HasColumnType("VARCHAR(MAX)");

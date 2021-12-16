@@ -11,7 +11,7 @@ namespace DutchTreat.Data.Entities
     {
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
-        [Column(TypeName = "VARCHAR(5)")]
+        [Column(TypeName = "VARCHAR(50)")]
         public string OrderNumber { get; set; }
 
         public ICollection<OrderItem> Items { get; set; }

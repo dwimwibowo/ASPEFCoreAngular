@@ -1,4 +1,5 @@
 ﻿import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { DataService } from '../shared/dataService';
 
 @Component({
@@ -9,12 +10,19 @@ import { DataService } from '../shared/dataService';
 export class Checkout {
 
     public title: string = 'Confirm Order';
+    public errorMessage: string = "";
 
-    constructor(public data: DataService) {
+    constructor(public data: DataService, public router: Router) {
     }
 
-    onCheckout() {
-    // TODO
-    alert("Doing checkout");
+    public onCheckout() {
+
+        this.data.checkout()
+            .subscribe(success => {
+                if (success) {
+                    this.router.navigate(["/"]);
+                }
+            },
+                err => this.errorMessage = "Failed to save order!");
     }
 }
