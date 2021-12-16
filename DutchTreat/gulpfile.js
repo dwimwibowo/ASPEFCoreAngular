@@ -7,7 +7,7 @@ gulp.task("minify", function () {
     return gulp.src("wwwroot/js/**/*.js")
         .pipe(uglify())
         .pipe(concat("dutchtreat.min.js"))
-        .pipe(gulp.dest("wwwroot/dist"));
+        .pipe(gulp.dest("wwwroot/js"));
 });
 
 gulp.task("default", gulp.series("minify"));

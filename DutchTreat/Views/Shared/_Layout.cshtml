@@ -27,9 +27,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="~/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/lib/adminlte/css/adminlte.min.css">
     <!-- Site style -->
-    <link rel="stylesheet" href="~/css/site.css">
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/site.css">
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -280,7 +285,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item active">Home</li>
+                                @if (
+                                    @ViewContext.RouteData.Values["controller"].ToString() != "app" ||
+                                    @ViewContext.RouteData.Values["action"].ToString() != "index"
+                                )
+                                {
+                                    <li class="breadcrumb-item">
+                                        @Html.ActionLink("Home", "index", "app")
+                                    </li>
+                                }
+                                <li class="breadcrumb-item active">@ViewBag.Title</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -320,14 +334,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/js/adminlte.min.js"></script>
-    <!-- App -->
-    @RenderSection("scripts", false)
-    <script src="~/js/index.js"></script>
+    <environment names="Development">
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/adminlte/js/adminlte.min.js"></script>
+        @RenderSection("scripts", false)
+        <script src="~/js/index.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"
+                asp-fallback-src="~/lib/jquery/jquery.min.js"
+                asp-fallback-test="window.JQuery"></script>
+        <script src="//ajax.aspnetcdn.com/ajax/bootstrap/4.6.0/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
+        <script src="~/lib/adminlte/js/adminlte.min.js"></script>
+        @RenderSection("scripts", false)
+        <script src="~/js/dutchtreat.min.js" asp-append-version="true"></script>
+    </environment>
 </body>
 </html>
