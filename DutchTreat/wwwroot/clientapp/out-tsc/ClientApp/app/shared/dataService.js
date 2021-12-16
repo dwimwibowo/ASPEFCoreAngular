@@ -17,7 +17,7 @@ let DataService = class DataService {
         }));
     }
     addToOrder(newProduct) {
-        let item = this.order.items.find(i => i.productId = newProduct.id);
+        let item = this.order.items.find(i => i.productId == newProduct.id);
         if (item) {
             item.quantity++;
         }

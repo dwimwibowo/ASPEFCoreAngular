@@ -1,0 +1,53 @@
+﻿<div class="card card-fuchsia">
+    <div class="card-header">
+        <h3 class="card-title">{{ title }}</h3>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">Product</th>
+                    <th>Description</th>
+                    <th class="text-center">#</th>
+                    <th class="text-right">$</th>
+                    <th class="text-right">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let o of data.order.items">
+                    <td class="text-center"><img src="/img/{{ o.productArtId }}.jpg" alt="o.productTitle" class="img-thumbnail checkout-thumb" /></td>
+                    <td>{{ o.productCategory }}({{ o.productSize }}) - {{ o.productArtist }}: {{ o.productTitle }}</td>
+                    <td class="text-center">{{ o.quantity }}</td>
+                    <td class="text-right">{{ o.unitPrice|currency:'USD':true }}</td>
+                    <td class="text-right">{{ (o.unitPrice * o.quantity)|currency:'USD':true }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="col-md-3 offset-md-9">
+            <table class="table table-condensed">
+                <tr>
+                    <td class="text-right">Sub Total</td>
+                    <td class="text-right">{{ data.order.subTotal|currency:'USD':true }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Shipping</td>
+                    <td class="text-right">$ 0.00</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Total:</td>
+                    <td class="text-right">{{ data.order.subTotal|currency:'USD':true }}</td>
+                </tr>
+            </table>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <div class="float-right">
+                <button class="btn btn-success" (click)="onCheckout()">Complete Purchase</button>&nbsp;
+                <a routerLink="/" class="btn btn-info">Cancel</a>
+            </div>
+        </div>
+        <!-- /.card-footer -->
+    </div>
+</div>
+<!-- /.card -->

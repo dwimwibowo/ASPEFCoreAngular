@@ -2,10 +2,17 @@ import { __decorate } from "tslib";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from "@angular/router";
 import { AppComponent } from './app.component';
 import { ProductList } from './shop/productList.component';
 import { Cart } from './shop/cart.component';
+import { Shop } from './shop/shop.component';
+import { Checkout } from './checkout/checkout.component';
 import { DataService } from './shared/dataService';
+let routes = [
+    { path: "", component: Shop },
+    { path: "checkout", component: Checkout }
+];
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -13,11 +20,17 @@ AppModule = __decorate([
         declarations: [
             AppComponent,
             ProductList,
-            Cart
+            Cart,
+            Shop,
+            Checkout
         ],
         imports: [
             BrowserModule,
-            HttpClientModule
+            HttpClientModule,
+            RouterModule.forRoot(routes, {
+                useHash: true,
+                enableTracing: false // for Debugging of the Routes
+            })
         ],
         providers: [
             DataService
